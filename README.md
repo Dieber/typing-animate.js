@@ -1,0 +1,1 @@
+# typing-animate.js
