@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+  font-family: "Arial"; }
+
+#nav-bar {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  text-align: center; }
+  #nav-bar #title {
+    color: #FFF;
+    line-height: 35.575rem;
+    width: 100%;
+    font-size: 2rem; }
+
+.title-transition {
+  animation: mytitlemove 2s 1;
+  -webkit-animation: mytitlemove 2s 1;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill: mytitlemove 2s 1; }
+
+@keyframes mytitlemove {
+  100% {
+    line-height: 15rem; } }
+
+.nav-transition {
+  animation: mynavmove 2s 1;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill: mynavmove 2s 1;
+  animation-fill-mode: forwards; }
+
+@keyframes mynavmove {
+  100% {
+    height: 15rem; } }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 2.5rem;
+  width: 100%;
+  background-color: #DDDDDD;
+  text-align: center;
+  line-height: 2.5rem; }
+
+#works {
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  width: 80%; }
+  #works div {
+    text-align: center; }
+    #works div .content {
+      position: relative;
+      border: 1px #CCC solid;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      opacity: 0;
+      height: auto; }
+
+.content-animation {
+  animation: mycontentmove 1s 1;
+  animation-fill-mode: forwards; }
+
+@keyframes mycontentmove {
+  to {
+    opacity: 1; } }
