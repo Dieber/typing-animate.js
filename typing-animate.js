@@ -1,44 +1,140 @@
-    function Input(){
-        this.str = "";
-        this.count = 0;
-        this.query = null;
-        this.timer = 0;
-        this.interval = 0;
-        this.callback = null;
-    }
+	function Typing(){
 
-    Input.prototype.init = function (str,timer,query,callback) {
-        this.str = str;
-        this.timer = timer;
-        this.makeTimer();
-        this.query = query;
-        this.callback = callback;
-    };
+		this.className = "";
+		this.stringName = "";
+		this.typingSpeed = 50;
+		this.cursorSpeed = 50;
+		this.taskQueue = [];
+		this.cursorChar = "▍";
+		this.cursorInfinity = false;
+		this.cursorInterval = null;
+		this.fade = false;
 
-    Input.prototype.makeTimer = function () {
-        var This = this;
-        var cnt = 0;
-        this.interval = setInterval(function () {
-            if(This.query[cnt] == -1){
-                $("span").last().remove();
-            }
-            if(This.count  == This.query[cnt]){
-                $(".typing-animate").append("<span>"+This.str.charAt(cnt)+"</span>");
-                cnt++;
-            }
-            This.count++;
-            if(This.count % 2 == 0) {
-                $(".typing-animate").append("<span id='cursor'>▍</span>");
-            }
-            else if(This.count % 2 == 1){
-                $("#cursor").remove();
-            }
-            if(cnt >= This.str.length){
-                setTimeout(function () {
-                    clearInterval(This.interval);
-                    $("#cursor").remove();
-                    This.callback();
-                },1000);
-            }
-        },This.timer);
-    };
+
+	}
+
+	Typing.prototype.init = function(object){
+		$.extend(this, object);
+		$("."+this.className).append("<span class='typing-container'>"+"</span>");
+		$("."+this.className).append("<span class='cursor'>"+this.cursorChar+"</span>");
+		if (this.fade == true) {
+			$(".cursor").css("transition","opacity "+this.cursorSpeed/2000+"s");
+		}
+
+		var show = true;
+		var This = this;
+		this.cursorInterval = setInterval(function(){
+			if (show) {
+				$("."+This.className + " .cursor").css("opacity",1);
+				show = false;
+			}
+			else{
+				$("."+This.className + " .cursor").css("opacity",0);
+				show = true;
+			}
+		},this.cursorSpeed);
+		return this;
+	};
+
+	Typing.prototype.add = function(stringName){
+		this.taskQueue.push({"add":stringName});
+		return this;
+	}
+
+	Typing.prototype.delete = function(number){
+		this.taskQueue.push({"delete":number});
+		return this;
+	}
+
+	Typing.prototype.sleep = function(number){
+		this.taskQueue.push({"sleep":number});
+		return this;
+	}
+
+	Typing.prototype.callback = function(callback){
+		this.taskQueue.push({"callback":callback});
+		return this;
+	}
+
+	Typing.prototype.setting = function(object){
+		this.taskQueue.push({"setting":object});
+		return this;
+	};
+
+
+
+	Typing.prototype.execute = function(){
+			if (!!this.taskQueue[0] == true){
+			console.log(this);
+
+				var a = this.taskQueue.shift()
+				for (name in a) {
+					if(name == "add"){
+						this.addTask(a[name]);
+					} else if(name == "delete"){
+						this.deleteTask(a[name]);
+					} else if(name == "sleep"){
+						this.sleepTask(a[name]);
+					} else if(name == "setting"){
+						this.settingTask(a[name]);
+					}else if(name == "callback"){
+						a[name]();
+						this.execute();
+					}
+				}
+			} else {
+				if (this.cursorInfinity == false) {
+					$("."+this.className + " .cursor").remove();
+					clearInterval(this.cursorInterval);
+				}
+				else{
+					console.log('??');
+					}
+				}
+			};
+
+	Typing.prototype.addTask = function(val){
+		this.stringName = val;
+		var This = this;
+		var count = 0;
+		var length = this.stringName.length;
+		var charInterval = setInterval(function(){
+	        $("."+This.className + " .typing-container").append("<span>"+This.stringName.charAt(count)+"</span>");
+	        count++;
+		        if (count == length) {
+		        	clearInterval(charInterval);
+		        	This.execute();
+		        }
+			}, this.typingSpeed);
+	}
+	Typing.prototype.deleteTask = function(val){
+		var This = this;
+		var count = 0;
+		var show = true;
+		var allCharLength = $("."+This.className + " .typing-container")[0].children.length;
+		if (val > allCharLength) {
+			console.error("The delete function's param must less than String's length");
+		} else{
+		var charInterval = setInterval(function(){
+        $("."+This.className + " .typing-container span:nth-last-child(1)").remove();
+        count++;
+	        if (count == val) {
+	        	clearInterval(charInterval);
+	        	This.execute();
+	        }
+		}, this.typingSpeed);
+	}
+}
+	Typing.prototype.sleepTask = function(val){
+		var This = this;
+		setTimeout(function(){
+			This.execute();
+		}, val);
+	}
+
+	Typing.prototype.settingTask = function(object){
+		$.extend(this,object);
+		this.execute();
+	};
+
+

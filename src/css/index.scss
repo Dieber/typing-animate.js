@@ -1,7 +1,5 @@
 @import "px2rem.scss";
 
-
-
 *{
     margin: 0;
     padding: 0;
@@ -23,15 +21,11 @@ html,body{
     text-align:center;
     #title{
         color:#FFF;
-        line-height: px2rem(1423 / 2);        
+        line-height: px2rem(1410 / 2);        
         width: 100%;
         font-size: px2rem(40);
     }
 }
-
-
-
-
 
 .title-transition{
     animation:mytitlemove 2s 1;
