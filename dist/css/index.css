@@ -1,0 +1,65 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: "微软雅黑";
+  font-size: 1rem;
+  text-align: center;
+  color: #888; }
+
+#title {
+  height: 100%;
+  width: 100%;
+  line-height: 35.5rem; }
+
+#example1 {
+  height: 100%;
+  width: 100%;
+  font-size: 2rem;
+  line-height: 35.5rem; }
+
+#example2 {
+  height: 100%;
+  width: 100%;
+  line-height: 35.5rem; }
+
+#id-example3 {
+  position: absolute;
+  width: 100%;
+  top: 16.25rem; }
+
+#id-example4 {
+  position: absolute;
+  width: 100%;
+  top: 16.25rem; }
+
+.final {
+  position: absolute;
+  width: 100%;
+  top: 40%; }
+
+#content {
+  width: 71.15rem;
+  height: 34px;
+  position: fixed;
+  bottom: 2.5rem;
+  transform: rotate(-45deg);
+  right: -31.825rem; }
+
+#github {
+  width: 15rem;
+  margin: 0px auto; }
+
+.github-animation {
+  animation: mygithubmove 1s 1;
+  animation-fill-mode: forwards; }
+
+@keyframes mygithubmove {
+  to {
+    bottom: 40%;
+    right: 0rem;
+    transform: rotate(0); } }

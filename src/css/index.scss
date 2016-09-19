@@ -1,0 +1,80 @@
+@import "px2rem.scss";
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: "微软雅黑";
+    font-size:px2rem(20);
+    text-align:center;
+    color: #888;
+}
+
+#title{
+    height:100%;
+    width:100%;
+    line-height:px2rem(1420 / 2);
+}
+
+#example1{
+    height:100%;
+    width:100%;
+    font-size:px2rem(40);
+    line-height:px2rem(1420 / 2);
+}
+
+#example2{
+    height:100%;
+    width:100%;
+    line-height:px2rem(1420 / 2);
+}
+
+#id-example3{
+    position:absolute;
+    width:100%;
+    top: px2rem(1420 / 4 - 30);
+}
+#id-example4{
+    position:absolute;
+    width:100%;
+    top: px2rem(1420 / 4 - 30);
+}
+
+.final{
+    position:absolute;
+    width:100%;
+    top: 40%;
+}
+
+
+#content{
+    width: px2rem(1423);
+    height: 34px;
+    position:fixed;
+    bottom:px2rem(50);
+    transform:rotate(-45deg);
+    right:px2rem(-1423 / 2 + 75);
+}
+
+#github{
+    width: px2rem(300);
+    margin: 0px auto;
+}
+
+
+.github-animation{
+    animation:mygithubmove 1s 1;
+    animation-fill-mode:forwards;
+}
+
+@keyframes mygithubmove{
+    to{
+        bottom: 40%;
+        right:px2rem(0);
+        transform:rotate(0);
+    }
+}
