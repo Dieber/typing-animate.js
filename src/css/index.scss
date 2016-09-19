@@ -1,5 +1,4 @@
 @import "px2rem.scss";
-
 *{
     margin: 0;
     padding: 0;
@@ -9,94 +8,73 @@
 html,body{
     height: 100%;
     width: 100%;
-    background-color: #FFF;
-    font-family: "Arial"
-}
-
-#nav-bar{
-    position:relative;
-    height: 100%;
-    width: 100%;
-    background-color: #000;
+    font-family: "微软雅黑";
+    font-size:px2rem(20);
     text-align:center;
-    #title{
-        color:#FFF;
-        line-height: px2rem(1410 / 2);        
-        width: 100%;
-        font-size: px2rem(40);
-    }
+    color: #888;
 }
 
-.title-transition{
-    animation:mytitlemove 2s 1;
-    -webkit-animation:mytitlemove 2s 1;
-    animation-fill-mode:forwards;
-    -webkit-animation-fill:mytitlemove 2s 1;
-}
-@keyframes mytitlemove {
-
-    100%{
-        line-height:px2rem(300);        
-
-    }
-}
-.nav-transition{
-    animation:mynavmove 2s 1;
-    animation-fill-mode:forwards;
-    -webkit-animation-fill:mynavmove 2s 1;
-    animation-fill-mode:forwards;
-
+#title{
+    height:100%;
+    width:100%;
+    line-height:px2rem(1420 / 2);
 }
 
-@keyframes mynavmove {
-
-    100%{
-        height: px2rem(300);
-    }
+#example1{
+    height:100%;
+    width:100%;
+    font-size:px2rem(40);
+    line-height:px2rem(1420 / 2);
 }
 
-footer{
+#example2{
+    height:100%;
+    width:100%;
+    line-height:px2rem(1420 / 2);
+}
+
+#id-example3{
+    position:absolute;
+    width:100%;
+    top: px2rem(1420 / 4 - 30);
+}
+#id-example4{
+    position:absolute;
+    width:100%;
+    top: px2rem(1420 / 4 - 30);
+}
+
+.final{
+    position:absolute;
+    width:100%;
+    top: 40%;
+}
+
+
+#content{
+    width: px2rem(1423);
+    height: 34px;
     position:fixed;
-    bottom:0;
-    height: px2rem(50);
-    width: 100%;
-    background-color:#DDDDDD;
-    text-align: center;
-    line-height: px2rem(50);
+    bottom:px2rem(50);
+    transform:rotate(-45deg);
+    right:px2rem(-1423 / 2 + 75);
+}
+
+#github{
+    width: px2rem(300);
+    margin: 0px auto;
 }
 
 
-#works{
-    margin:0 auto;
-    margin-top:px2rem(100);
-    margin-bottom:px2rem(100);
-
-    width: 80%;
-
-    div{
-        text-align:center;
-        .content{
-            position:relative;
-            border:1px #CCC solid;
-            // padding:20px;
-            margin-top:px2rem(100);
-            margin-bottom:px2rem(100);
-            opacity:0;
-            height: auto;
-
-        }
-    }
-}
-
-.content-animation{
-    animation:mycontentmove 1s 1;
+.github-animation{
+    animation:mygithubmove 1s 1;
     animation-fill-mode:forwards;
-
 }
 
-@keyframes mycontentmove{
+@keyframes mygithubmove{
     to{
-        opacity:1;
+        bottom: 40%;
+        right:px2rem(0);
+        transform:rotate(0);
     }
 }
-

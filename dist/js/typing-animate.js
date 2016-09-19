@@ -1,26 +1,38 @@
-	function Typing(){
-
-		this.className = "";
+	function Typing(className,object){
 		this.stringName = "";
 		this.typingSpeed = 50;
 		this.cursorSpeed = 50;
 		this.taskQueue = [];
-		this.cursorChar = "▍";
+		this.cursorChar = "█";
+		this.loop = false;
 		this.cursorInfinity = false;
 		this.cursorInterval = null;
 		this.fade = false;
-
-
+		this.className = className;
+		this.head = "";
+		this.foot = "";
+		$.extend(this, object);
+		this.init();
 	}
 
-	Typing.prototype.init = function(object){
-		$.extend(this, object);
-		$("."+this.className).append("<span class='typing-container'>"+"</span>");
+	Typing.prototype.init = function(){
+		if(!!this.head)
+		{
+			$("."+this.className).append("<span class='typing-head'>"+this.head+"</span>");
+		}
+		$("."+this.className).append("<span class='typing-container'></span>");
 		$("."+this.className).append("<span class='cursor'>"+this.cursorChar+"</span>");
+		console.log($("."+this.className)[0]);
+		if(!!this.foot)
+		{
+			$("."+this.className).append("<span class='typing-foot'>"+this.foot+"</span>");
+		}
+
+
+
 		if (this.fade == true) {
 			$(".cursor").css("transition","opacity "+this.cursorSpeed/2000+"s");
 		}
-
 		var show = true;
 		var This = this;
 		this.cursorInterval = setInterval(function(){
@@ -64,10 +76,12 @@
 
 
 	Typing.prototype.execute = function(){
-			if (!!this.taskQueue[0] == true){
-			console.log(this);
 
+			if (!!this.taskQueue[0] == true){
 				var a = this.taskQueue.shift()
+			if( this.loop == true){
+				this.taskQueue.push(a);
+			}
 				for (name in a) {
 					if(name == "add"){
 						this.addTask(a[name]);
@@ -83,12 +97,12 @@
 					}
 				}
 			} else {
-				if (this.cursorInfinity == false) {
-					$("."+this.className + " .cursor").remove();
-					clearInterval(this.cursorInterval);
-				}
-				else{
-					console.log('??');
+					if (this.cursorInfinity == false) {
+						$("."+this.className + " .cursor").remove();
+						clearInterval(this.cursorInterval);
+					}
+					else{
+						console.log('??');
 					}
 				}
 			};
@@ -112,6 +126,9 @@
 		var count = 0;
 		var show = true;
 		var allCharLength = $("."+This.className + " .typing-container")[0].children.length;
+		if(!val == true){
+			val = allCharLength;
+		}
 		if (val > allCharLength) {
 			console.error("The delete function's param must less than String's length");
 		} else{
