@@ -2,6 +2,10 @@
 
 ##打字动画插件(需JQuery支持)
 
+###文件下载
+
+在本仓库的/dist/js路径下。
+
 ###预览和简单介绍
 
 [点击这里](http://www.one-story.cn/typing-animate.html)
