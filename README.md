@@ -76,6 +76,10 @@ setting()        //传入一个对象，可在动画的途中进行配置。
      typingSpeed //打字速度，默认50ms
      cursorSpeed //光标闪烁速度，默认50ms
 execute()        //末尾以此函数结束即可开始动画。
+
 ```
 
+###License
+
+Released under the MIT license.
 
